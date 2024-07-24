@@ -1,0 +1,178 @@
+
+
+
+<style>
+     /* Main heading style */
+
+    body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: url('/static/pexels-grizzlybear-1237119.jpg') center/cover no-repeat, rgba(0, 0, 0, 0.2);
+            background-blend-mode: darken;
+           
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            z-index: -1;
+        }
+   
+    h1 {
+        margin-top: -30px;
+        color: #4CAF50;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+    }
+
+    /* Form container */
+    .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: rgba(255, 255, 255, 0.719);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form input styles */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        color: #333;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+    .form-control {
+        margin-top: 10px;
+        width: 600px;
+        background-color: rgba(255, 255, 255, 0.63);
+        border: 1px solid #ced4da;
+        border-radius: 8px;
+        padding: 10px;
+        transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    }
+
+    .form-control:focus {
+        border-color: #4CAF50;
+        box-shadow: 0 0 8px rgba(76, 175, 80, 0.2);
+    }
+
+    /* Submit button */
+    .btn-primary {
+        background-color: #4CAF50;
+        border-color: #4CAF50;
+        border-radius: 8px;
+        transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+        padding: 10px 20px;
+        font-size: 1.1em;
+    }
+
+    .btn-primary:hover {
+        background-color: #FF5722;
+        border-color: #FF5722;
+        transform: translateY(-2px);
+    }
+
+
+    
+/* Navbar Styles */
+.navbar {
+    width: 94%;
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0a0500da; /* Dark background color */
+    color: #ffffff;
+    padding: 20px 40px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    margin-bottom: 90px;
+}
+
+.navbar-brand {
+    color: #ffffff;
+    font-size: 34px;
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: #007bff; /* Light blue on hover */
+}
+
+.navbar-nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 10px;
+}
+
+.nav-item {
+    margin: 0;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    background-color: #495057;
+    color: #ffffff;
+}
+
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="{{ url_for('index') }}">LMS</a>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('create_course') }}">Create Course</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('add_student') }}">Add Student</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('enroll') }}">Enroll</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{% block content %}
+
+<div class="container">
+    <h1>Create a New Assignment</h1>
+    <div class="form-container">
+        <form method="POST">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.title.label }}
+                {{ form.title(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.content.label }}
+                {{ form.content(class="form-control", rows=5) }}
+            </div>
+
+            <div class="form-group">
+                {{ form.submit(class="btn btn-primary btn-block") }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

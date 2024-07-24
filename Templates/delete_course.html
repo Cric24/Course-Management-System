@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    /* Custom CSS for Delete Course Page */
+
+    /* General styles */
+    body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: url('/static/pexels-david-bartus-43782-4418939.jpg') center/cover no-repeat, rgba(0, 0, 0, 0.2);
+            background-blend-mode: darken;
+           
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            z-index: -1;
+        }
+
+    h1 {
+        margin-top: 200px;
+        color: #4CAF50;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+    }
+
+    /* Paragraph style */
+    p {
+        color: #e7dcdc;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 1.1em;
+    }
+
+    /* Form container */
+    form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Delete button */
+    .btn-danger {
+        background-color: #FF5722;
+        border-color: #FF5722;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 1.1em;
+        margin-right: 10px;
+    }
+
+    .btn-danger:hover {
+        background-color: #EF5350;
+        border-color: #EF5350;
+    }
+
+    /* Cancel button */
+    .btn-secondary {
+        background-color: #6C757D;
+        border-color: #6C757D;
+        border-radius: 8px;
+        padding: 10px 20px;
+        font-size: 1.1em;
+    }
+
+    .btn-secondary:hover {
+        background-color: #495057;
+        border-color: #495057;
+    }
+</style>
+
+<div class="container">
+    <h1>Delete Course</h1>
+    <p>Are you sure you want to delete the course "{{ course.title }}"?</p>
+
+    <form method="POST">
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}
